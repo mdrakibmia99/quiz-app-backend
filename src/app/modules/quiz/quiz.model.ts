@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import { model, Schema } from "mongoose";
 
 // Quiz Schema (with embedded questions)
-const quizSchema = new mongoose.Schema({
+const quizSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String },
     questions: [
@@ -16,6 +16,6 @@ const quizSchema = new mongoose.Schema({
     timestamps: true
   });
   
-  const Quiz = mongoose.model('Quiz', quizSchema);
+  const Quiz = model('Quiz', quizSchema);
 
 export default Quiz;
