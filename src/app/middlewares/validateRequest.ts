@@ -7,6 +7,7 @@ const validateRequest = (schema: AnyZodObject) => {
     // console.log(req.user, 'req.user');
    const verifyData= await schema.parseAsync({
       body: req.body,
+      cookies: req.cookies
     });
     req.body = verifyData.body;
     next();

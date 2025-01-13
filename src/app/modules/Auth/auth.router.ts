@@ -15,4 +15,9 @@ authRouter.post("/login",
     authController.login
 
 )
+authRouter.post("/refresh-token",
+    validateRequest(authValidation.refreshTokenValidationSchema),
+    authController.refreshToken
+
+)
 export default authRouter;

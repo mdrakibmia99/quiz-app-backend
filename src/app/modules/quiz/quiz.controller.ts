@@ -23,6 +23,7 @@ const getSingleQuiz = catchAsync(async (req, res) => {
     });
   });
 const getAllQuiz = catchAsync(async (req, res) => {
+  // console.log(req.cookies)
     const result = await quizService.getAllQuiz()
     res.status(StatusCodes.OK).json({
       success: true,
