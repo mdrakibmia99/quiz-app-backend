@@ -4,10 +4,7 @@ import { quizService } from "./quiz.service";
 
 const createQuiz = catchAsync(async (req, res) => {
     const data = req.body;
-  
-
     const result = await quizService.createQuiz(data)
-   
     res.status(StatusCodes.CREATED).json({
       success: true,
       message: 'Blog created successfully',
@@ -15,7 +12,28 @@ const createQuiz = catchAsync(async (req, res) => {
       data: result,
     });
   });
+const getSingleQuiz = catchAsync(async (req, res) => {
+     const quizId = req.params.id;
+    const result = await quizService.getSingleQuiz(quizId)
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Quiz retrieve successfully',
+      statusCode: StatusCodes.OK,
+      data: result,
+    });
+  });
+const getAllQuiz = catchAsync(async (req, res) => {
+    const result = await quizService.getAllQuiz()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'All Quiz retrieve successfully',
+      statusCode: StatusCodes.OK,
+      data: result,
+    });
+  });
 
   export const quizController={
-    createQuiz
+    createQuiz,
+    getSingleQuiz,
+    getAllQuiz
   }

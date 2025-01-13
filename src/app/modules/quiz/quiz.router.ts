@@ -5,6 +5,14 @@ import { quizValidation } from "./quiz.validation";
 import { quizController } from "./quiz.controller";
 
 const quizRouter = Router();
+quizRouter.get(
+    '/:id',
+    quizController.getSingleQuiz,
+  );
+quizRouter.get(
+    '/',
+    quizController.getAllQuiz,
+  );
 quizRouter.post(
     '/',
     auth('admin'),
