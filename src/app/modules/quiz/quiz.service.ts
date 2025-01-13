@@ -14,8 +14,13 @@ const getAllQuiz = async () => {
   return result
 };
 
+const deleteQuiz = async (quizId: string) => {
+  return  await Quiz.findByIdAndDelete(quizId);
+};
+
 export const quizService = {
   createQuiz,
   getSingleQuiz,
-  getAllQuiz
+  getAllQuiz,
+  deleteQuiz
 };

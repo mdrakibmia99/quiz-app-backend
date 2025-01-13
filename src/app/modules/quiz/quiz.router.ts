@@ -9,6 +9,10 @@ quizRouter.get(
     '/:id',
     quizController.getSingleQuiz,
   );
+quizRouter.delete(
+    '/:id',
+    quizController.deleteQuiz,
+  );
 quizRouter.get(
     '/',
     quizController.getAllQuiz,

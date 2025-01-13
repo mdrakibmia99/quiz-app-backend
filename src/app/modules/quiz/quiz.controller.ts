@@ -32,9 +32,21 @@ const getAllQuiz = catchAsync(async (req, res) => {
       data: result,
     });
   });
+const deleteQuiz = catchAsync(async (req, res) => {
+  // console.log(req.cookies)
+  const quizId = req.params.id;
+     await quizService.deleteQuiz(quizId)
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Delete quiz successfully',
+      statusCode: StatusCodes.OK,
+      data: null,
+    });
+  });
 
   export const quizController={
     createQuiz,
     getSingleQuiz,
-    getAllQuiz
+    getAllQuiz,
+    deleteQuiz
   }
