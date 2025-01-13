@@ -17,7 +17,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
         `You are not authorized to access this route `,
       );
     }
-    const token = getTokenWithBearer.split(' ')[1] || getTokenWithBearer;
+    const token = getTokenWithBearer.split(' ')[1] ;
 
     // check validation for token and decode the token
     const decoded = jwt.verify(
