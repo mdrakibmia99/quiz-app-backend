@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Types } from 'mongoose';
 import { IUser } from '../user/user.interface';
 import User from '../user/user.model';
@@ -8,6 +10,7 @@ import config from '../../config';
 import { createToken } from './auth.utills';
 import { JwtPayload } from 'jsonwebtoken';
 import jwt from 'jsonwebtoken';
+import { Response } from 'express';
 
 type UserPayload = {
   _id: Types.ObjectId;
@@ -68,11 +71,18 @@ const login = async (payload: { email: string; password: string }) => {
   return { accessToken, refreshToken, user };
 };
 
-const refreshToken = async (token: string) => {
-  const decoded = jwt.verify(
-    token,
-    config.jwt_refresh_secret as string,
-  ) as JwtPayload;
+const refreshToken = async (token: string,res:Response) => {
+  let decoded;
+  try {
+    decoded= jwt.verify(
+      token,
+      config.jwt_refresh_secret as string,
+    ) as JwtPayload;
+  } catch (error) {
+    res.clearCookie('refreshToken');
+    throw new AppError(StatusCodes.UNAUTHORIZED, 'Expired refresh token');
+  }
+  
   const { userId } = decoded;
   const user = await User.findById(userId).select('+password');
   if (!user) {

@@ -37,7 +37,7 @@ const register = catchAsync(async (req, res) => {
 
 const refreshToken = catchAsync(async (req, res) => {
   const { refreshToken } = req.cookies;
-  const result = await authService.refreshToken(refreshToken);
+  const result = await authService.refreshToken(refreshToken,res);
   // console.log(result,"controler result");
   sendResponse(res, {
     success: true,
@@ -48,9 +48,20 @@ const refreshToken = catchAsync(async (req, res) => {
     },
   });
 });
+const logOut=(req:Request,res:Response)=>{
+  console.log("cocken",res.cookie)
+   res.clearCookie('refreshToken');
+   sendResponse(res, {
+    success: true,
+    message: 'Logout',
+    statusCode: StatusCodes.OK,
+    data: [],
+  });
+}
 
 export const authController = {
   register,
   login,
   refreshToken,
+  logOut
 };
