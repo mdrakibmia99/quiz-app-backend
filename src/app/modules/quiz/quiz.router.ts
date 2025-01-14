@@ -15,6 +15,7 @@ quizRouter.delete(
   );
 quizRouter.get(
     '/',
+    auth('admin'),
     quizController.getAllQuiz,
   );
 quizRouter.post(
