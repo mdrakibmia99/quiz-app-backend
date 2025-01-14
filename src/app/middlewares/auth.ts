@@ -17,13 +17,18 @@ const auth = (...requiredRoles: TUserRole[]) => {
         `You are not authorized to access this route `,
       );
     }
-    const token = getTokenWithBearer.split(' ')[1] ;
+    const token = getTokenWithBearer.split(' ')[1];
+let decoded;
+    try {
+      // check validation for token and decode the token
+       decoded = jwt.verify(
+        token,
+        config.jwt_access_secret as string,
+      ) as JwtPayload;
+    } catch {
+      throw new AppError(StatusCodes.UNAUTHORIZED, 'expired access token');
+    }
 
-    // check validation for token and decode the token
-    const decoded = jwt.verify(
-      token,
-      config.jwt_access_secret as string,
-    ) as JwtPayload;
     //    user check from database
     const { email, role } = decoded;
     const user = await User.findOne({ email });
