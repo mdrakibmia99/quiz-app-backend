@@ -49,7 +49,6 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 const logOut=(req:Request,res:Response)=>{
-  console.log("cocken",res.cookie)
    res.clearCookie('refreshToken');
    sendResponse(res, {
     success: true,
