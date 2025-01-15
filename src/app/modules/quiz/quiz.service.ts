@@ -6,7 +6,7 @@ const createQuiz = async (payload: IQuiz) => {
   return result;
 };
 const getSingleQuiz = async (quizId: string):Promise<IQuiz | null > => {
-  const result = await Quiz.findById(quizId);
+  const result = await Quiz.findById(quizId).select('description title questions');
   return result?  result.toObject<IQuiz>() : null
 };
 const getAllQuiz = async () => {
