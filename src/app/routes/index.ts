@@ -2,6 +2,7 @@ import { Router } from "express";
 import authRouter from "../modules/Auth/auth.router";
 import adminRouter from "../modules/Admin/admin.router";
 import quizRouter from "../modules/quiz/quiz.router";
+import quizResultRouter from "../modules/resultInfo/quizResult.router";
 
 const router= Router()
 const moduleRoutes=[
@@ -16,6 +17,10 @@ const moduleRoutes=[
     {
         path:"/quizzes",
         route:quizRouter
+    },
+    {
+        path:"/quiz/result",
+        route:quizResultRouter
     }
 ]
 
