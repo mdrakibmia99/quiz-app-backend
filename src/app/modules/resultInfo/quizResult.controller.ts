@@ -1,15 +1,17 @@
 import { StatusCodes } from "http-status-codes";
 import catchAsync from "../../utils/catchAsync";
 import { quizResultService } from "./quizResult.service";
+import { JwtPayload } from "jsonwebtoken";
 
 
 
 const createQuizResult = catchAsync(async (req, res) => {
     console.log(req.body);
-   const result = await quizResultService.createQuizResult(req.body)
+  
+   const result = await quizResultService.createQuizResult({...req.body,userId:(req?.user as JwtPayload).userId})
    res.status(StatusCodes.OK).json({
      success: true,
-     message: 'Quiz retrieve successfully',
+     message: 'user quiz submitted successfully',
      statusCode: StatusCodes.OK,
      data: result,
    });
