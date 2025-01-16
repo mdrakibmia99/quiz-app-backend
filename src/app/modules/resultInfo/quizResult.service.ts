@@ -1,7 +1,8 @@
-import { IQuiaResult } from './quizResult.interface';
+
 import QuizResult from './quizResult.model';
 
-const createQuizResult = async (payload: IQuiaResult) => {
+const createQuizResult = async (payload:{userId:string,userAnswer:string[],quizId:string}) => {
+
   const result = await QuizResult.create({ ...payload });
   return result;
 };
