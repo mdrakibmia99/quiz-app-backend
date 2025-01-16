@@ -5,8 +5,10 @@ const createQuizResult = async (payload: IQuiaResult) => {
   const result = await QuizResult.create({ ...payload });
   return result;
 };
-const getQuizResult = async (resultInfo) => {
-  const result = await QuizResult.findOne(resultInfo);
+const getQuizResult = async (quizInfo: { userId: string; quizId: string }) => {
+  const result = await QuizResult.findOne(quizInfo).select(
+    '-createdAt -updated -__v',
+  );
   return result;
 };
 
