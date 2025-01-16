@@ -4,8 +4,8 @@ import { model, Schema } from 'mongoose';
 // Quiz Schema (with embedded questions)
 const quizResultSchema = new Schema(
   {
-    quizComplete: { type: Boolean, required: true },
-    moreResultInfo: { type: Boolean, required: true },
+    quizComplete: { type: Boolean, required: true ,default: true },
+    moreResultInfo: { type: Boolean, required: true,default: true },
     userAnswer: [{ type: String, required: true }],
     userId: {
       type: Schema.Types.ObjectId,
