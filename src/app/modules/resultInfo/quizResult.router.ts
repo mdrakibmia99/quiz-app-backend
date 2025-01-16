@@ -7,8 +7,9 @@ import { quizResultController } from "./quizResult.controller";
 
 const quizResultRouter = Router();
 quizResultRouter.get(
-    '/',
-    quizResultController.createQuizResult,
+    '/:quizId',
+    auth('admin','user'),
+    quizResultController.getQuizResult,
   );
 
 
