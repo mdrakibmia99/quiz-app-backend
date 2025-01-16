@@ -15,7 +15,7 @@ quizResultRouter.get(
 
   quizResultRouter.post(
     '/',
-    // auth('admin','user'),
+    auth('admin','user'),
     validateRequest(quizResultValidation.quizResultValidationSchema),
     quizResultController.createQuizResult,
   );
