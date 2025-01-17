@@ -6,7 +6,7 @@ import { JwtPayload } from "jsonwebtoken";
 
 
 const createQuizResult = catchAsync(async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
   
    const result = await quizResultService.createQuizResult({...req.body,userId:(req?.user as JwtPayload).userId})
    res.status(StatusCodes.OK).json({
@@ -19,7 +19,7 @@ const createQuizResult = catchAsync(async (req, res) => {
 const getQuizResult = catchAsync(async (req, res) => {
   const quizId=req.params.quizId;
     const userId = req?.user?.userId;
-    console.log({userId},{quizId})
+    // console.log({userId},{quizId})
    const result = await quizResultService.getQuizResult({userId,quizId})
    res.status(StatusCodes.OK).json({
      success: true,
